@@ -1,7 +1,7 @@
 # IPFS interface for HIVE
 ## Description
 Basic utility for uploading files to the IPFS network. \
-A file-descriptor is also sent to the HIVE so others can find your work.
+File-descriptors are sent to the HIVE to help with decentralization.
 
 ### `yarn start`
 
