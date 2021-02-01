@@ -39,9 +39,14 @@ export class UploadForm extends Component{
         delete json["contents"]
         this.hiveStuff(json)
         console.log("All done!")
+        let mime = json.mime.split("/")[0]
         setTimeout(()=>{
           document.getElementById("file").style.display = "block"
-          this.displayContents("<a href='https://gateway.ipfs.io/ipfs/"+json.cid+"' target='_blank'>https://gateway.ipfs.io/ipfs/"+json.cid+"</a>")
+          this.displayContents(
+            "<span style='color:#000;'>IPFS.IO:</span> <a href='https://gateway.ipfs.io/ipfs/"+json.cid+"?"+mime+"' target='_blank'>https://gateway.ipfs.io/ipfs/"+json.cid+"?"+mime+"</a>"
+            +"<br>"
+            +"<span style='color:#000;'>FULLTIMEGEEK.COM:</span> <a href='https://fulltimegeek.com/ipfs/"+json.cid+"?"+mime+"' target='_blank'>https://fulltimegeek.com/ipfs/"+json.cid+"?"+mime+"</a>"
+            )
         },6000)
     }
 
