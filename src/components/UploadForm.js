@@ -33,22 +33,17 @@ export class UploadForm extends Component{
     }
 
     ipfsStuff = async (json) => {
-        if(!this.props.state.ipfs)this.props.state.ipfs = await IpfsCore.create()
-        const { cid } = await this.props.state.ipfs.add(json.contents,{/*onlyHash:true*/})
-        json.cid = ""+cid
-        delete json["contents"]
-        this.hiveStuff(json)
-        console.log("All done!")
-        let mime = json.mime.split("/")[0]
-        setTimeout(()=>{
-          document.getElementById("file").style.display = "block"
-          this.displayContents(
-            "<span style='color:#000;'>IPFS.IO:</span> <a href='https://gateway.ipfs.io/ipfs/"+json.cid+"?"+mime+"' target='_blank'>https://gateway.ipfs.io/ipfs/"+json.cid+"?"+mime+"</a>"
-            +"<br>"
-            +"<span style='color:#000;'>FULLTIMEGEEK.COM:</span> <a href='https://fulltimegeek.com/ipfs/"+json.cid+"?"+mime+"' target='_blank'>https://fulltimegeek.com/ipfs/"+json.cid+"?"+mime+"</a>"
-            )
-        },6000)
-    }
+      if(!this.props.state.ipfs)this.props.state.ipfs = await IpfsCore.create()
+      const { cid } = await this.props.state.ipfs.add(json.contents,{/*onlyHash:true*/})
+      json.cid = ""+cid
+      delete json["contents"]
+      this.hiveStuff(json)
+      console.log("All done!")
+      setTimeout(()=>{
+        document.getElementById("file").style.display = "block"
+        this.displayContents("<a href='https://gateway.ipfs.io/ipfs/"+json.cid+"?"+json.mime+"' target='_blank'>https://gateway.ipfs.io/ipfs/"+json.cid+"?"+json.mime+"</a>")
+      },6000)
+  }
 
     readSingleFile = (file)=> {
       if (!file) {
